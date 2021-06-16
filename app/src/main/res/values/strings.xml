@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DailyQuotes</string>
+    <string name="app_version">App version:</string>
 </resources>
