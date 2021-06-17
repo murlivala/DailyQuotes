@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">DailyQuotes</string>
     <string name="app_version">App version:</string>
+    <string name="exit_message">Hope you enjoy DailyQuotes. \n Thanks for using the app!</string>
+    <string name="fetch_categories">Categories</string>
+    <string name="random_quote">Random Quote</string>
+    <string name="send_email">Send Email</string>
 </resources>
