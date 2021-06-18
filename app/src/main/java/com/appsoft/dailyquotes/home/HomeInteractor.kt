@@ -2,7 +2,7 @@ package com.appsoft.dailyquotes.home
 
 import com.appsoft.dailyquotes.models.ResponseModel
 
-class HomeInteractor(repository: HomeRepository) : HomeRepository.onRepositoryResponse {
+open class HomeInteractor(repository: HomeRepository) : HomeRepository.onRepositoryResponse {
     private val homeRepository = repository
     private lateinit var presenter : onResponse
 

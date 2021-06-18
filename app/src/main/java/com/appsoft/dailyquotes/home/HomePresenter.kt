@@ -8,7 +8,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
-class HomePresenter (view: Display, interactor: HomeInteractor) : BasePresenter(view), HomeInteractor.onResponse {
+open class HomePresenter (view: Display, interactor: HomeInteractor) : BasePresenter(view), HomeInteractor.onResponse {
     private val homeInteractor = interactor
     private val display = view
 
