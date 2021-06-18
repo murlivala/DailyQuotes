@@ -1,7 +1,6 @@
 package com.appsoft.dailyquotes.home
 
 
-import android.util.Log
 import com.appsoft.dailyquotes.api.QuoteApiClient
 import com.appsoft.dailyquotes.models.QuoteBaseModel
 import com.appsoft.dailyquotes.models.ResponseModel
@@ -13,7 +12,6 @@ class HomeRepository {
     lateinit var listener : onRepositoryResponse
 
     fun getCategoryList(repositoryResponse: onRepositoryResponse) {
-        Log.d("####","getCategoryList:")
         listener = repositoryResponse
         var request = QuoteApiClient.quoteApiService.getCategories()
         request.enqueue(object : Callback<QuoteBaseModel> {
@@ -21,22 +19,21 @@ class HomeRepository {
                 call: Call<QuoteBaseModel>,
                 response: Response<QuoteBaseModel>
             ) {
-                Log.d("####","onResponse:"+response.isSuccessful)
-                if (response.body() != null) {
+                if (response.isSuccessful && response.body() != null) {
                     val result = ResponseModel(response.isSuccessful, response.body() as QuoteBaseModel)
-                    Log.d("####","Cat:"+response.body())
-                    listener.onSuccess(result)
+                    listener.onAllCategorySuccess(result)
+                } else {
+                    listener.onError(response.code(), response.message())
                 }
             }
 
             override fun onFailure(call: Call<QuoteBaseModel>, t: Throwable) {
-                Log.d("####","onFailure:"+t.message)
+                listener.onError(-1, t.message + "")
             }
         })
     }
 
     fun getQuoteByCategory(cat: String, onRepositoryResponse: onRepositoryResponse) {
-        Log.d("####","getQuoteByCategory:"+cat)
         listener = onRepositoryResponse
         val request = QuoteApiClient.quoteApiService.getQuoteByCategory(cat)
 
@@ -45,23 +42,24 @@ class HomeRepository {
                 call: Call<QuoteBaseModel>,
                 response: Response<QuoteBaseModel>
             ) {
-                Log.d("####","onResponse:"+response.isSuccessful)
-                if (response.body() != null) {
+                if (response.isSuccessful && response.body() != null) {
                     val result = ResponseModel(response.isSuccessful, response.body() as QuoteBaseModel)
-                    Log.d("####","Cat:"+response.body())
-                    listener.onSuccess(result)
+                    listener.onQuoteByCategorySuccess(result)
+                } else {
+                    listener.onError(response.code(), response.message())
                 }
             }
 
             override fun onFailure(call: Call<QuoteBaseModel>, t: Throwable) {
-                Log.d("####","onFailure:"+t.message)
+                listener.onError(-1, t.message + "")
             }
         })
 
     }
 
     interface onRepositoryResponse {
-        fun onSuccess(response : ResponseModel)
-        fun onError()
+        fun onAllCategorySuccess(response : ResponseModel)
+        fun onQuoteByCategorySuccess(response: ResponseModel)
+        fun onError(errorCode:Int, ErrorMessage: String)
     }
 }

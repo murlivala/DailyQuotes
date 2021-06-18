@@ -19,16 +19,21 @@ class HomeInteractor(repository: HomeRepository) : HomeRepository.onRepositoryRe
         homeRepository.getQuoteByCategory(cat, this)
     }
 
-    override fun onSuccess(response: ResponseModel) {
-        presenter.onSuccess(response)
+    override fun onAllCategorySuccess(response: ResponseModel) {
+        presenter.onAllCategorySuccess(response)
     }
 
-    override fun onError() {
-        presenter.onError()
+    override fun onQuoteByCategorySuccess(response: ResponseModel) {
+        presenter.onQuoteByCategorySuccess(response)
+    }
+
+    override fun onError(errorCode:Int, ErrorMessage: String) {
+        presenter.onError(errorCode, ErrorMessage)
     }
 
     interface onResponse {
-        fun onSuccess(response : ResponseModel)
-        fun onError()
+        fun onAllCategorySuccess(response : ResponseModel)
+        fun onQuoteByCategorySuccess(response: ResponseModel)
+        fun onError(errorCode:Int, ErrorMessage: String)
     }
 }
