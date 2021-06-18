@@ -4,10 +4,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.ProgressBar
-import android.widget.Switch
 import android.widget.TextView
 import com.appsoft.dailyquotes.BuildConfig
-import com.appsoft.dailyquotes.IFragmentListener
+import com.appsoft.dailyquotes.listener.IFragmentListener
 import com.appsoft.dailyquotes.R
 import com.appsoft.dailyquotes.base.BasePresenter
 

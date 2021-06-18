@@ -1,4 +1,4 @@
-package com.appsoft.dailyquotes
+package com.appsoft.dailyquotes.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.appsoft.dailyquotes.R
 
 
 class CategoryViewAdapter (context: Context?, data: List<String>) :
@@ -14,7 +15,7 @@ class CategoryViewAdapter (context: Context?, data: List<String>) :
     private val mInflater: LayoutInflater
     private var mClickListener: ItemClickListener? = null
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view: View = mInflater.inflate(R.layout.category_row, parent, false)
         return ViewHolder(view)
     }

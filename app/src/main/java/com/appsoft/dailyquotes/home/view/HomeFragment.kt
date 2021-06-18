@@ -8,8 +8,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.appsoft.dailyquotes.R
-import com.appsoft.dailyquotes.CategoryViewAdapter
-import com.appsoft.dailyquotes.IFragmentListener
+import com.appsoft.dailyquotes.adapters.CategoryViewAdapter
+import com.appsoft.dailyquotes.listener.IFragmentListener
 import com.appsoft.dailyquotes.base.views.BaseFragment
 import com.appsoft.dailyquotes.consts.ViewStates
 import com.appsoft.dailyquotes.home.*
